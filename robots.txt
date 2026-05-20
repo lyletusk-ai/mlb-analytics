@@ -1,0 +1,7 @@
+# MLB Player Index — public site, indexable.
+# robots.txt grants full crawl access to all major search engines.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://mlbplayerindex.com/sitemap.xml
