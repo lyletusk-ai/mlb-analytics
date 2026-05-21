@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="ballFillBright" cx="38%" cy="32%" r="65%">
+      <!-- Much brighter overall — light cyan core fades to mid cyan, not navy -->
+      <stop offset="0%"  stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="35%" stop-color="#a3eaff" stop-opacity="1"/>
+      <stop offset="80%" stop-color="#6fd3f5" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#3aa0c4" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="ballHalo" cx="50%" cy="50%" r="55%">
+      <stop offset="0%"  stop-color="#a3eaff" stop-opacity="0.75"/>
+      <stop offset="80%" stop-color="#6fd3f5" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#6fd3f5" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Bright halo glow (no dark background — favicon will composite on any tab color) -->
+  <circle cx="32" cy="32" r="31" fill="url(#ballHalo)"/>
+  <!-- Bright cyan ball body -->
+  <circle cx="32" cy="32" r="26" fill="url(#ballFillBright)"/>
+  <!-- Thick bright rim for max contrast at small sizes -->
+  <circle cx="32" cy="32" r="26" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="32" cy="32" r="26" fill="none" stroke="#6fd3f5" stroke-width="0.8" opacity="0.7"/>
+  <!-- Subtle chromatic hint — barely visible at 16px but adds richness at 32+ -->
+  <circle cx="33.5" cy="32" r="27" fill="none" stroke="#ff5dd2" stroke-width="0.6" opacity="0.45"/>
+  <!-- BIG bold red baseball seams — must dominate at small sizes -->
+  <g fill="none" stroke-linecap="round">
+    <!-- Wider glow behind for visibility -->
+    <path d="M 9 18 Q 24 32 9 46" stroke="#ff3030" stroke-width="5" opacity="0.4"/>
+    <path d="M 55 18 Q 40 32 55 46" stroke="#ff3030" stroke-width="5" opacity="0.4"/>
+    <!-- Solid red seam line -->
+    <path d="M 9 18 Q 24 32 9 46" stroke="#d92020" stroke-width="2.5"/>
+    <path d="M 55 18 Q 40 32 55 46" stroke="#d92020" stroke-width="2.5"/>
+  </g>
+  <!-- Big visible stitches — 4 per side, larger -->
+  <g stroke="#ffffff" stroke-width="2" stroke-linecap="round">
+    <line x1="6"  y1="22" x2="12" y2="23"/>
+    <line x1="5"  y1="29" x2="11" y2="30"/>
+    <line x1="5"  y1="35" x2="11" y2="34"/>
+    <line x1="6"  y1="42" x2="12" y2="41"/>
+    <line x1="58" y1="22" x2="52" y2="23"/>
+    <line x1="59" y1="29" x2="53" y2="30"/>
+    <line x1="59" y1="35" x2="53" y2="34"/>
+    <line x1="58" y1="42" x2="52" y2="41"/>
+  </g>
+  <!-- Bright highlight for that 3D / hologram feel -->
+  <ellipse cx="22" cy="20" rx="6" ry="3.5" fill="#ffffff" opacity="0.75" transform="rotate(-30 22 20)"/>
+</svg>
