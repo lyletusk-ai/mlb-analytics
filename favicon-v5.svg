@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="ballFillU" cx="38%" cy="30%" r="64%">
+      <stop offset="0%"  stop-color="#ffffff"/>
+      <stop offset="38%" stop-color="#a3eaff"/>
+      <stop offset="80%" stop-color="#6fd3f5"/>
+      <stop offset="100%" stop-color="#2f93b8"/>
+    </radialGradient>
+  </defs>
+  <!-- Dark "app icon" rounded square — gives the favicon a defined shape on
+       LIGHT tab strips (dark-on-light reads cleanly). The faint cyan rim
+       defines the edge on DARK tab strips so it never disappears either. -->
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="#0a1019"/>
+  <rect x="1.75" y="1.75" width="60.5" height="60.5" rx="12.25" fill="none" stroke="#6fd3f5" stroke-width="1.5" opacity="0.5"/>
+  <!-- Bright baseball, padded inside the square -->
+  <circle cx="32" cy="32" r="20" fill="url(#ballFillU)"/>
+  <circle cx="32" cy="32" r="20" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.9"/>
+  <!-- Red baseball seams -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M 16 21 Q 25 32 16 43" stroke="#ff3030" stroke-width="3.5" opacity="0.4"/>
+    <path d="M 48 21 Q 39 32 48 43" stroke="#ff3030" stroke-width="3.5" opacity="0.4"/>
+    <path d="M 16 21 Q 25 32 16 43" stroke="#d61f1f" stroke-width="2"/>
+    <path d="M 48 21 Q 39 32 48 43" stroke="#d61f1f" stroke-width="2"/>
+  </g>
+  <!-- White stitch ticks -->
+  <g stroke="#ffffff" stroke-width="1.5" stroke-linecap="round">
+    <line x1="13" y1="24" x2="17.5" y2="25"/>
+    <line x1="12.5" y1="29" x2="17" y2="30"/>
+    <line x1="12.5" y1="35" x2="17" y2="34"/>
+    <line x1="13" y1="40" x2="17.5" y2="39"/>
+    <line x1="51" y1="24" x2="46.5" y2="25"/>
+    <line x1="51.5" y1="29" x2="47" y2="30"/>
+    <line x1="51.5" y1="35" x2="47" y2="34"/>
+    <line x1="51" y1="40" x2="46.5" y2="39"/>
+  </g>
+  <!-- Specular highlight -->
+  <ellipse cx="25" cy="23" rx="4.5" ry="2.6" fill="#ffffff" opacity="0.65" transform="rotate(-30 25 23)"/>
+</svg>
