@@ -1,57 +1,47 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <defs>
-    <radialGradient id="ballGlow6h" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"  stop-color="#6fd3f5" stop-opacity="0.55"/>
-      <stop offset="45%" stop-color="#3aa0c4" stop-opacity="0.35"/>
+    <radialGradient id="ballFillBright" cx="38%" cy="32%" r="65%">
+      <!-- Much brighter overall — light cyan core fades to mid cyan, not navy -->
+      <stop offset="0%"  stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="35%" stop-color="#a3eaff" stop-opacity="1"/>
+      <stop offset="80%" stop-color="#6fd3f5" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#3aa0c4" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="ballHalo" cx="50%" cy="50%" r="55%">
+      <stop offset="0%"  stop-color="#a3eaff" stop-opacity="0.75"/>
+      <stop offset="80%" stop-color="#6fd3f5" stop-opacity="0.25"/>
       <stop offset="100%" stop-color="#6fd3f5" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="ballFill6h" cx="38%" cy="32%" r="60%">
-      <stop offset="0%"  stop-color="#cdf2ff" stop-opacity="0.50"/>
-      <stop offset="60%" stop-color="#1e6680" stop-opacity="0.65"/>
-      <stop offset="100%" stop-color="#0a1a25" stop-opacity="0.85"/>
-    </radialGradient>
   </defs>
-  <rect width="64" height="64" rx="12" fill="#0a0f1c"/>
-  <circle cx="32" cy="32" r="28" fill="url(#ballGlow6h)"/>
-  <!-- Chromatic split outline -->
-  <circle cx="33.5" cy="32" r="22" fill="none" stroke="#ff5dd2" stroke-width="0.8" opacity="0.55"/>
-  <circle cx="30.5" cy="32" r="22" fill="none" stroke="#6fd3f5" stroke-width="0.8" opacity="0.75"/>
-  <circle cx="32" cy="32" r="22" fill="url(#ballFill6h)"/>
-  <circle cx="32" cy="32" r="22" fill="none" stroke="#cdf2ff" stroke-width="0.7"/>
-  <!-- Baseball seam curves — bright red (real baseball stitching) with cyan glow under -->
+  <!-- Bright halo glow (no dark background — favicon will composite on any tab color) -->
+  <circle cx="32" cy="32" r="31" fill="url(#ballHalo)"/>
+  <!-- Bright cyan ball body -->
+  <circle cx="32" cy="32" r="26" fill="url(#ballFillBright)"/>
+  <!-- Thick bright rim for max contrast at small sizes -->
+  <circle cx="32" cy="32" r="26" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="32" cy="32" r="26" fill="none" stroke="#6fd3f5" stroke-width="0.8" opacity="0.7"/>
+  <!-- Subtle chromatic hint — barely visible at 16px but adds richness at 32+ -->
+  <circle cx="33.5" cy="32" r="27" fill="none" stroke="#ff5dd2" stroke-width="0.6" opacity="0.45"/>
+  <!-- BIG bold red baseball seams — must dominate at small sizes -->
   <g fill="none" stroke-linecap="round">
-    <!-- Glow underlay -->
-    <path d="M 15 21 Q 23 32 15 43" stroke="#ff8888" stroke-width="3.2" opacity="0.45"/>
-    <path d="M 49 21 Q 41 32 49 43" stroke="#ff8888" stroke-width="3.2" opacity="0.45"/>
-    <!-- Main seam line -->
-    <path d="M 15 21 Q 23 32 15 43" stroke="#d96b6b" stroke-width="1.5"/>
-    <path d="M 49 21 Q 41 32 49 43" stroke="#d96b6b" stroke-width="1.5"/>
+    <!-- Wider glow behind for visibility -->
+    <path d="M 9 18 Q 24 32 9 46" stroke="#ff3030" stroke-width="5" opacity="0.4"/>
+    <path d="M 55 18 Q 40 32 55 46" stroke="#ff3030" stroke-width="5" opacity="0.4"/>
+    <!-- Solid red seam line -->
+    <path d="M 9 18 Q 24 32 9 46" stroke="#d92020" stroke-width="2.5"/>
+    <path d="M 55 18 Q 40 32 55 46" stroke="#d92020" stroke-width="2.5"/>
   </g>
-  <!-- Detailed double-pair stitches — real baseballs have stitches in pairs along the seam -->
-  <g stroke="#ff8a8a" stroke-width="0.7" stroke-linecap="round" opacity="0.95">
-    <!-- Left seam, top to bottom, double-pair pattern -->
-    <line x1="13" y1="23" x2="17" y2="24"/>
-    <line x1="13.5" y1="25" x2="17.5" y2="26"/>
-    <line x1="12" y1="27" x2="16" y2="28"/>
-    <line x1="12.5" y1="29" x2="16.5" y2="30"/>
-    <line x1="11.5" y1="31" x2="15.5" y2="32"/>
-    <line x1="11.5" y1="33" x2="15.5" y2="32"/>
-    <line x1="12" y1="35" x2="16" y2="34"/>
-    <line x1="12.5" y1="37" x2="16.5" y2="36"/>
-    <line x1="13" y1="39" x2="17" y2="38"/>
-    <line x1="13.5" y1="41" x2="17.5" y2="40"/>
-    <!-- Right seam mirror -->
-    <line x1="51" y1="23" x2="47" y2="24"/>
-    <line x1="50.5" y1="25" x2="46.5" y2="26"/>
-    <line x1="52" y1="27" x2="48" y2="28"/>
-    <line x1="51.5" y1="29" x2="47.5" y2="30"/>
-    <line x1="52.5" y1="31" x2="48.5" y2="32"/>
-    <line x1="52.5" y1="33" x2="48.5" y2="32"/>
-    <line x1="52" y1="35" x2="48" y2="34"/>
-    <line x1="51.5" y1="37" x2="47.5" y2="36"/>
-    <line x1="51" y1="39" x2="47" y2="38"/>
-    <line x1="50.5" y1="41" x2="46.5" y2="40"/>
+  <!-- Big visible stitches — 4 per side, larger -->
+  <g stroke="#ffffff" stroke-width="2" stroke-linecap="round">
+    <line x1="6"  y1="22" x2="12" y2="23"/>
+    <line x1="5"  y1="29" x2="11" y2="30"/>
+    <line x1="5"  y1="35" x2="11" y2="34"/>
+    <line x1="6"  y1="42" x2="12" y2="41"/>
+    <line x1="58" y1="22" x2="52" y2="23"/>
+    <line x1="59" y1="29" x2="53" y2="30"/>
+    <line x1="59" y1="35" x2="53" y2="34"/>
+    <line x1="58" y1="42" x2="52" y2="41"/>
   </g>
-  <!-- Specular highlight -->
-  <circle cx="24" cy="22" r="3" fill="#ffffff" opacity="0.3"/>
+  <!-- Bright highlight for that 3D / hologram feel -->
+  <ellipse cx="22" cy="20" rx="6" ry="3.5" fill="#ffffff" opacity="0.75" transform="rotate(-30 22 20)"/>
 </svg>
