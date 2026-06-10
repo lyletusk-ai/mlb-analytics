@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MLB Data Context Skill — mlbplayerindex.com</title>
+<meta name="description" content="A Claude-compatible skill bundle that teaches an LLM the MLB Player Index data model — FV formulas, validated baselines, the Athletics alias, position eligibility, and BigQuery schemas.">
+<style>
+  :root {
+    --bg: #0c1116;
+    --ink: #e8eaed;
+    --dim: #8b96a2;
+    --line: #1f2731;
+    --link: #6cb6ff;
+    --code-bg: #131922;
+    --accent: #c9d6e2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    background: var(--bg); color: var(--ink);
+    font: 15px/1.55 "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px; }
+  h1 { font-size: 28px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  h2 { font-size: 18px; margin: 40px 0 12px; color: var(--accent); }
+  p, li { font-size: 15px; }
+  a { color: var(--link); text-decoration: none; border-bottom: 1px solid rgba(108, 182, 255, 0.3); }
+  a:hover { border-bottom-color: var(--link); }
+  .lede { color: var(--dim); margin: 0 0 32px; font-size: 16px; }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0 32px; }
+  .btn {
+    display: inline-block; padding: 10px 18px;
+    background: var(--code-bg); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 4px;
+    font-size: 14px; cursor: pointer;
+    text-decoration: none; border-bottom: 1px solid var(--line);
+  }
+  .btn:hover { background: #1a2330; border-color: var(--link); }
+  .btn.primary { background: #1a3a5c; border-color: var(--link); }
+  code { background: var(--code-bg); padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+  pre { background: var(--code-bg); padding: 16px; border-radius: 6px; border: 1px solid var(--line); overflow-x: auto; font-size: 13px; line-height: 1.5; }
+  ul { padding-left: 22px; }
+  ul li { margin: 4px 0; }
+  .meta { color: var(--dim); font-size: 13px; margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); }
+  hr { border: none; border-top: 1px solid var(--line); margin: 32px 0; }
+  .files { font-size: 14px; }
+  .files li { color: var(--dim); }
+  .files li code { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p><a href="/">← back to mlbplayerindex.com</a></p>
+
+<h1>MLB Data Context Skill</h1>
+<p class="lede">A portable knowledge bundle that teaches Claude (or any LLM) the MLB Player Index data model — formulas, gotchas, validated baselines, and proposed BigQuery schemas.</p>
+
+<div class="btn-row">
+  <a href="/skill.zip" class="btn primary">Download .zip (24 KB)</a>
+  <a href="/skill/SKILL.md" class="btn">Browse SKILL.md</a>
+  <a href="/skill/references/" class="btn">Browse references/</a>
+</div>
+
+<h2>What's in it</h2>
+<p>9 markdown files, ~1,360 lines total, structured for <a href="https://docs.claude.com/en/docs/agents-and-tools/skills" target="_blank">Anthropic's Skill format</a>:</p>
+
+<ul class="files">
+  <li><code>SKILL.md</code> — orientation + navigation</li>
+  <li><code>references/entities.md</code> — Player subtypes, Team, Org, the Athletics alias problem</li>
+  <li><code>references/metrics.md</code> — FV, Projected WAR, Farm rank, Payroll + CBT impact (with formulas)</li>
+  <li><code>references/sql-patterns.md</code> — Position-eligibility helper + 7 common query patterns</li>
+  <li><code>references/tables/players.md</code> — ALL, RP_ALL, ALL_IF, ALL_OF, PLAYER_META</li>
+  <li><code>references/tables/prospects.md</code> — PROSPECT_BY_NAME (500 minor leaguers)</li>
+  <li><code>references/tables/teams.md</code> — TEAM_COLORS, TEAM_PAYROLL_2026, TEAM_DIVISION, CBT thresholds</li>
+  <li><code>references/tables/contracts.md</code> — CONTRACTS + What-If payroll modeling</li>
+  <li><code>references/tables/projections.md</code> — YBY year-by-year + FG ensemble + dynamic Marcel-weight blend</li>
+</ul>
+
+<h2>What it captures</h2>
+<ul>
+  <li><strong>The FV formula internals</strong> — baselineWar × dollarPerWar × yearsOfControl − ageCost(...) + young-small-sample lift</li>
+  <li><strong>The dynamic Marcel-weight blend</strong> — how Marcel and the FG ensemble combine as 2026 PAs accumulate</li>
+  <li><strong>Proj-only stopgaps</strong> — how injured stars like McClanahan and Jared Jones get a synthesized row</li>
+  <li><strong>Validated FV baselines</strong> — Skenes 29.8, Skubal 25.5, Devers 7.278, etc. (sanity-check anchors)</li>
+  <li><strong>The Athletics alias problem</strong> — why team-rank loops always skip "Oakland Athletics"</li>
+  <li><strong>Position eligibility resolver</strong> — the pool-based fallback when <code>primaryPosition</code> is missing</li>
+  <li><strong>Proposed BigQuery schemas</strong> — <code>CREATE OR REPLACE TABLE</code> definitions for migrating off the in-memory store</li>
+</ul>
+
+<h2>How to use it</h2>
+
+<p><strong>In Claude.ai (consumer chat):</strong> Open a Project, drag the unzipped folder (or the individual .md files) into the project knowledge area. Claude reads them on demand whenever an MLB question comes up.</p>
+
+<p><strong>With the Anthropic API (programmatic):</strong></p>
+<pre><code>curl -X POST https://api.anthropic.com/v1/skills \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: skills-2025-10-02" \
+  -F "file=@skill.zip"</code></pre>
+<p>Then reference the returned <code>skill_id</code> on a Managed Agent.</p>
+
+<p><strong>As prose context:</strong> If your LLM platform doesn't support skills, just paste the relevant .md file content into your system prompt. <code>references/metrics.md</code> alone is usually enough for FV-related questions.</p>
+
+<h2>What this site already does with it</h2>
+<p>The chat panel at <a href="/">mlbplayerindex.com</a> uses a condensed ~5K-token excerpt of this skill in its system prompt, plus three direct-access tools (<code>query_prospects</code>, <code>get_team_finances</code>, <code>get_farm_ranks</code>) that read the in-memory store live. You only need a personal Anthropic API key to use that chat — your key never leaves your browser.</p>
+
+<p class="meta">
+This skill is informational and provided as-is. It describes the data model behind mlbplayerindex.com as of June 2026. No warranty of accuracy or fitness for any particular purpose.
+<br><br>
+Generated and maintained by the <a href="/">MLB Player Index</a> project.
+</p>
+
+</div>
+</body>
+</html>
